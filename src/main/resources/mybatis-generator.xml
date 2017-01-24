@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="[e|E]xample$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+
+	<commentGenerator>
+		<property name="suppressAllComments" value="false"/>
+		<property name="suppressDate" value="true"/>
+	</commentGenerator>
+
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://127.0.0.1:3306/test" userId="root"
+		password="">
+	</jdbcConnection>
+
+	<javaTypeResolver>
+		<property name="forceBigDecimals" value="false" />
+	</javaTypeResolver>
+
+	<!-- generate Model -->
+	<javaModelGenerator targetPackage="com.springboot.model"
+		targetProject="${entity.target.dir}">
+		<property name="enableSubPackages" value="true" />
+		<property name="trimStrings" value="true" />
+	</javaModelGenerator>
+
+	<!-- 自动生成xml -->
+	<sqlMapGenerator  targetPackage="com.springboot.model.mapper"
+		targetProject="${dao.resources.dir}">
+		<property name="enableSubPackages" value="true" />
+	</sqlMapGenerator>
+
+	<!-- 自动生成mapper接口, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER -->
+	<javaClientGenerator type="XMLMAPPER"
+		targetPackage="com.springboot.model.mapper" implementationPackage="com.springboot.model.mapper.impl"
+		targetProject="${entity.target.dir}">
+		<property name="enableSubPackages" value="true" />
+	</javaClientGenerator>
+		<table tableName="user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql"/>
+		</table>
+
+	</context>
+</generatorConfiguration>  
